@@ -15,7 +15,6 @@ export default function Footer() {
             Made by Novus
           </Link>
         </div>
-        <div>Built with Volta</div>
       </div>
     </footer>
   )

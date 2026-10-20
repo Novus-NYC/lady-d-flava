@@ -59,4 +59,4 @@ npm run dev
 - [ ] Update About + Contact pages (`src/app/pages/*`)
 - [ ] Replace favicon + assets in `public/`
 - [ ] Update SEO metadata
-- [ ] (Optional) Update Volta credit link text / URL in the footer
+- [ ] (Optional) Update Novus credit link text / URL in the footer
