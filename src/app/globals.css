@@ -1,12 +1,126 @@
+@import "@fontsource/shrikhand/latin-400.css";
+@import "@fontsource-variable/bricolage-grotesque/wght.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  padding: 0;
+:root {
+  --font-display: "Shrikhand";
+  --font-sans: "Bricolage Grotesque Variable";
+  --nav-h: 4rem;
+}
+
+html {
+  scroll-padding-top: calc(var(--nav-h) + 1rem);
+}
+
+html,
+body {
   margin: 0;
+  padding: 0;
+}
+
+body {
+  @apply bg-plantain text-ink font-sans antialiased;
+  font-size: 1.0625rem;
+  line-height: 1.55;
 }
 
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  background: #f2b12c;
+  color: #24150e;
+}
+
+/* Focus: visible everywhere, same shape everywhere. */
+:focus-visible {
+  outline: 3px solid #b92d17;
+  outline-offset: 3px;
+}
+
+@layer components {
+  .wrap {
+    @apply mx-auto w-full max-w-site px-5 sm:px-8;
+  }
+  .btn {
+    @apply inline-flex min-h-12 items-center justify-center gap-2 border-2 px-5 py-2.5 font-semibold leading-none transition-colors duration-200;
+  }
+  .btn-primary {
+    @apply btn border-pepper bg-pepper text-paper hover:bg-pepper-deep hover:border-pepper-deep;
+  }
+  .btn-ink {
+    @apply btn border-ink bg-ink text-plantain hover:bg-pepper hover:border-pepper;
+  }
+  .btn-ghost {
+    @apply btn border-ink bg-transparent text-ink hover:bg-ink hover:text-plantain;
+  }
+  .btn-light {
+    @apply btn border-plantain bg-plantain text-ink hover:bg-turmeric hover:border-turmeric;
+  }
+  .btn-outline-light {
+    @apply btn border-plantain bg-transparent text-plantain hover:bg-plantain hover:text-ink;
+  }
+  .link-underline {
+    @apply underline decoration-2 underline-offset-4 decoration-turmeric hover:decoration-pepper;
+  }
+}
+
+/* Scroll reveals. Elements start visible for no-JS and reduced motion;
+   the .reveal-ready class is added by the client only when motion is allowed. */
+.reveal-ready [data-reveal] {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 550ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 550ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+/* Mask reveal: the wrapper is what the observer watches (a fully clipped
+   element never counts as intersecting), the child is what gets unmasked.
+   The negative insets leave room for the offset photo shadows. */
+.reveal-ready [data-reveal="mask"] {
+  opacity: 1;
+  transform: none;
+}
+.reveal-ready [data-reveal="mask"] > * {
+  clip-path: inset(-24px -24px 100% -24px);
+  transition: clip-path 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal-ready [data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+.reveal-ready [data-reveal="mask"].is-in > * {
+  clip-path: inset(-24px -24px -24px -24px);
+}
+
+/* Hero: the wordmark and photo strip arrive once on load. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-in {
+    animation: hero-in 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: var(--hero-delay, 0ms);
+  }
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+/* Dotted leader between a dish name and its description on the menu board. */
+.leader {
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1.4px);
+  background-size: 7px 7px;
+  background-repeat: repeat-x;
+  background-position: 0 70%;
+  opacity: 0.45;
 }
