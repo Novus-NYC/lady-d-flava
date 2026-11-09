@@ -1,15 +1,16 @@
 import type { Metadata } from "next"
 import Link from "next/link"
+import OrderForm from "@/lib/components/order-form"
 import OrderWays from "@/lib/components/order-ways"
 import { areaLine, site } from "@/lib/site"
 
 export const metadata: Metadata = {
   title: "Order",
-  description: `Order from ${site.name} by phone, text or email. Delivery around ${site.area.neighborhood}, ${site.area.borough}. ${site.payments.join(", ")} accepted.`,
+  description: `Order from ${site.name} online, or by phone, text or email. Delivery around ${site.area.neighborhood}, ${site.area.borough}. ${site.payments.join(", ")} accepted.`,
 }
 
 const steps = [
-  { title: "Get in touch", body: "Call or text with what you’d like. If you’re not sure, ask what’s cooking today." },
+  { title: "Send your order", body: "Build it online above, or call or text with what you’d like. Not sure? Ask what’s cooking today." },
   { title: "Confirm and pay", body: `The kitchen confirms your order and total. Pay with ${site.payments.join(", ").replace(/, ([^,]*)$/, " or $1")}.` },
   { title: "Food on the way", body: "Your food is packed up hot and sent out for delivery." },
 ]
@@ -20,15 +21,25 @@ export default function OrderPage() {
       <header className="wrap pb-10 pt-10 md:pb-14 md:pt-16">
         <h1 className="hero-in font-display text-[clamp(3rem,9vw,5.5rem)] leading-[0.95] text-pepper">Order</h1>
         <p className="hero-in mt-5 max-w-xl text-xl leading-snug" style={{ "--hero-delay": "100ms" } as React.CSSProperties}>
-          There’s no checkout here. Orders go straight to the kitchen, so the fastest way is a quick call or text.
+          Pick your dishes below and send your order straight to the kitchen. Lady D confirms the total and you pay
+          by {site.payments.join(", ").replace(/, ([^,]*)$/, " or $1")}.
         </p>
       </header>
 
-      <section aria-labelledby="ways-title" className="wrap pb-16 md:pb-20">
-        <h2 id="ways-title" className="sr-only">
-          Ways to order
+      <section aria-labelledby="online-title" className="wrap pb-16 md:pb-20">
+        <h2 id="online-title" className="sr-only">
+          Order online
         </h2>
-        <OrderWays />
+        <OrderForm />
+      </section>
+
+      <section aria-labelledby="ways-title" className="wrap pb-16 md:pb-20">
+        <h2 id="ways-title" className="font-display text-[clamp(1.8rem,4vw,2.6rem)] leading-[1.05]">
+          Rather call, text or email?
+        </h2>
+        <div className="mt-6">
+          <OrderWays />
+        </div>
       </section>
 
       <section className="bg-callaloo text-plantain">

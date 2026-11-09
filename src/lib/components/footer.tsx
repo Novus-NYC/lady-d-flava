@@ -1,4 +1,6 @@
+import Image from "next/image"
 import Link from "next/link"
+import { logoImage } from "@/lib/photos"
 import { areaLine, mailHref, nav, site, telHref } from "@/lib/site"
 
 export default function Footer() {
@@ -6,6 +8,7 @@ export default function Footer() {
     <footer className="bg-ink text-plantain">
       <div className="wrap grid gap-10 py-14 md:grid-cols-[1.4fr_1fr_1fr] md:gap-8">
         <div>
+          <Image src={logoImage} alt={`${site.name} logo`} width={112} height={112} className="mb-5 h-28 w-28 rounded-full" />
           <p className="font-display text-3xl leading-none text-turmeric">{site.name}</p>
           <p className="mt-3 max-w-xs text-plantain/80">
             {site.cuisine}, cooked in {site.area.neighborhood}, {site.area.borough}. {site.promise}.

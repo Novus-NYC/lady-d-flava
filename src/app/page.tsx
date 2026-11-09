@@ -26,14 +26,17 @@ export default function HomePage() {
               className="hero-in mt-6 max-w-md text-xl leading-snug"
               style={{ "--hero-delay": "160ms" } as React.CSSProperties}
             >
-              Doubles, bake and salt fish, puri and curry, and a pot of soup every Saturday. Call or text and it’s
-              on the way.
+              Doubles, bake and salt fish, puri and curry, and a pot of soup every Saturday. Order online, call or text,
+              and it’s on the way.
             </p>
             <div
               className="hero-in mt-8 flex flex-wrap gap-3"
               style={{ "--hero-delay": "240ms" } as React.CSSProperties}
             >
-              <a href={telHref} className="btn-primary text-lg">
+              <Link href="/order#order-online" className="btn-primary text-lg">
+                Order online
+              </Link>
+              <a href={telHref} className="btn-ghost text-lg">
                 Call to order
               </a>
               <Link href="/menu" className="btn-ghost text-lg">
@@ -48,8 +51,8 @@ export default function HomePage() {
               style={{ "--hero-delay": "120ms" } as React.CSSProperties}
             >
               <Image
-                src={photos.bake.src}
-                alt={photos.bake.alt}
+                src={photos.curryRoti.src}
+                alt={photos.curryRoti.alt}
                 priority
                 sizes="(min-width: 768px) 360px, 78vw"
                 className="h-auto w-full"
@@ -60,8 +63,8 @@ export default function HomePage() {
               style={{ "--hero-delay": "260ms" } as React.CSSProperties}
             >
               <Image
-                src={photos.chicken.src}
-                alt={photos.chicken.alt}
+                src={photos.doubles.src}
+                alt={photos.doubles.alt}
                 sizes="(min-width: 768px) 220px, 40vw"
                 className="h-auto w-full"
               />
@@ -180,12 +183,12 @@ export default function HomePage() {
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            <a href={telHref} className="btn-ink text-lg">
+            <Link href="/order#order-online" className="btn-ink text-lg">
+              Order online
+            </Link>
+            <a href={telHref} className="btn-ghost text-lg">
               Call to order
             </a>
-            <Link href="/order" className="btn-ghost text-lg">
-              Other ways to order
-            </Link>
           </div>
         </div>
       </section>

@@ -1,6 +1,8 @@
 "use client"
 
+import Image from "next/image"
 import Link from "next/link"
+import { logoImage } from "@/lib/photos"
 import { usePathname } from "next/navigation"
 import { useEffect, useRef, useState } from "react"
 import { nav, site, telHref } from "@/lib/site"
@@ -71,9 +73,10 @@ export default function Navbar() {
       <div className="wrap flex h-full items-center justify-between gap-6">
         <Link
           href="/"
-          className="font-display text-2xl leading-none text-pepper sm:text-[1.7rem]"
+          className="flex items-center gap-3 font-display text-2xl leading-none text-pepper sm:text-[1.7rem]"
           aria-label={`${site.name}, home`}
         >
+          <Image src={logoImage} alt="" width={48} height={48} priority className="h-11 w-11 rounded-full sm:h-12 sm:w-12" />
           Lady D’s
         </Link>
 
